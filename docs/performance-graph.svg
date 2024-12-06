@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .bar { transition: height 0.3s ease-in-out; }
+        .bar:hover { filter: brightness(1.1); }
+    </style>
+    <!-- Grid lines -->
+    <g stroke="#eee" stroke-width="1">
+        <line x1="50" y1="250" x2="550" y2="250"/>
+        <line x1="50" y1="200" x2="550" y2="200"/>
+        <line x1="50" y1="150" x2="550" y2="150"/>
+        <line x1="50" y1="100" x2="550" y2="100"/>
+        <line x1="50" y1="50" x2="550" y2="50"/>
+    </g>
+    <!-- Bars -->
+    <rect class="bar" x="100" y="50" width="60" height="200" fill="#FF6B6B"/>
+    <rect class="bar" x="200" y="100" width="60" height="150" fill="#4ECDC4"/>
+    <rect class="bar" x="300" y="80" width="60" height="170" fill="#45B7D1"/>
+    <rect class="bar" x="400" y="120" width="60" height="130" fill="#96CEB4"/>
+    <!-- Labels -->
+    <text x="130" y="270" text-anchor="middle" fill="#666">Swift++</text>
+    <text x="230" y="270" text-anchor="middle" fill="#666">C++</text>
+    <text x="330" y="270" text-anchor="middle" fill="#666">Rust</text>
+    <text x="430" y="270" text-anchor="middle" fill="#666">Go</text>
+    <!-- Y-axis labels -->
+    <text x="40" y="250" text-anchor="end" fill="#666">0</text>
+    <text x="40" y="200" text-anchor="end" fill="#666">25</text>
+    <text x="40" y="150" text-anchor="end" fill="#666">50</text>
+    <text x="40" y="100" text-anchor="end" fill="#666">75</text>
+    <text x="40" y="50" text-anchor="end" fill="#666">100</text>
+</svg>

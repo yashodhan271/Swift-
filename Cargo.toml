@@ -1,0 +1,41 @@
+[package]
+name = "swiftpp"
+version = "0.1.0"
+edition = "2021"
+description = "Swift++ Programming Language Compiler"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+
+[dependencies]
+llvm-sys = "150"           # LLVM bindings for code generation
+clap = "3.0"              # Command-line argument parsing
+log = "0.4"               # Logging framework
+env_logger = "0.9"        # Logging setup
+crossbeam-channel = "0.5" # Multi-producer multi-consumer channels
+futures = "0.3"           # Async runtime support
+num_cpus = "1.13"        # CPU core count detection
+memmap2 = "0.7.1"        # Memory-mapped file support
+rayon = "1.5"            # Parallel computing support
+rand = "0.8"             # Random number generation
+tower-lsp = "0.19"
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+windows-sys = { version = "0.48", features = ["Win32_System_Diagnostics_Debug", "Win32_Foundation"] }
+gimli = "0.28.0"
+object = "0.32.0"
+
+[dev-dependencies]
+criterion = "0.3"         # Benchmarking framework
+pretty_assertions = "1.0" # Better test assertions
+
+[profile.release]
+opt-level = 3             # Maximum optimization
+lto = true               # Link-time optimization
+codegen-units = 1        # Maximum optimization potential
+panic = "abort"          # Smaller binary size
+strip = true             # Remove debug symbols
+
+[profile.dev]
+opt-level = 0            # Fast compilation for development
+debug = true             # Full debug info

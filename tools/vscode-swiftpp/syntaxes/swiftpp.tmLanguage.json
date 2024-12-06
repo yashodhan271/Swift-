@@ -1,0 +1,99 @@
+{
+    "name": "Swift++",
+    "scopeName": "source.swiftpp",
+    "fileTypes": ["spp"],
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#functions"
+        },
+        {
+            "include": "#types"
+        },
+        {
+            "include": "#variables"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.double-slash.swiftpp",
+                    "match": "//.*$"
+                },
+                {
+                    "name": "comment.block.swiftpp",
+                    "begin": "/\\*",
+                    "end": "\\*/"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.swiftpp",
+                    "match": "\\b(if|else|while|for|return|break|continue|match|async|await|parallel)\\b"
+                },
+                {
+                    "name": "keyword.declaration.swiftpp",
+                    "match": "\\b(fn|let|const|struct|enum|type|own|ref|move)\\b"
+                },
+                {
+                    "name": "keyword.operator.swiftpp",
+                    "match": "\\b(and|or|not|in)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.swiftpp",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.swiftpp",
+                            "match": "\\\\."
+                        }
+                    ]
+                }
+            ]
+        },
+        "functions": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.swiftpp",
+                    "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\("
+                }
+            ]
+        },
+        "types": {
+            "patterns": [
+                {
+                    "name": "storage.type.swiftpp",
+                    "match": "\\b(i32|i64|f32|f64|bool|string|void)\\b"
+                },
+                {
+                    "name": "entity.name.type.swiftpp",
+                    "match": "\\b[A-Z][a-zA-Z0-9_]*\\b"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "variable.other.swiftpp",
+                    "match": "\\b[a-z_][a-zA-Z0-9_]*\\b"
+                }
+            ]
+        }
+    }
+}

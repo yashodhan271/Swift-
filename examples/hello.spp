@@ -1,0 +1,25 @@
+// Hello World program in Swift++
+
+fn main() -> i32 {
+    // Print hello world
+    println("Hello, World!");
+    
+    // Demonstrate some Swift++ features
+    let x = 42;
+    let y: f64 = 3.14;
+    
+    // Pattern matching
+    match x {
+        0 => println("zero"),
+        42 => println("found the answer!"),
+        _ => println("something else"),
+    }
+    
+    // Parallel computation
+    parallel {
+        let sum = (1..1000).sum();
+        println("Sum: {}", sum);
+    }
+    
+    return 0;
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .feature { transition: transform 0.3s; }
+        .feature:hover { transform: scale(1.05); }
+        .checkmark { fill: #4CAF50; }
+        .partial { fill: #FFA726; }
+        .missing { fill: #E53935; }
+    </style>
+    <!-- Header -->
+    <text x="200" y="40" font-size="20" font-weight="bold">Language Feature Comparison</text>
+    <!-- Features -->
+    <g transform="translate(50, 80)">
+        <!-- Row headers -->
+        <text x="0" y="30">Zero-cost Abstractions</text>
+        <text x="0" y="80">Memory Safety</text>
+        <text x="0" y="130">Null Safety</text>
+        <text x="0" y="180">Pattern Matching</text>
+        <text x="0" y="230">Async/Await</text>
+        <!-- Column headers -->
+        <text x="250" y="0">Swift++</text>
+        <text x="350" y="0">C++</text>
+        <text x="450" y="0">Rust</text>
+        <text x="550" y="0">Go</text>
+        <!-- Checkmarks -->
+        <g class="feature">
+            <!-- Swift++ -->
+            <circle class="checkmark" cx="250" cy="25" r="10"/>
+            <circle class="checkmark" cx="250" cy="75" r="10"/>
+            <circle class="checkmark" cx="250" cy="125" r="10"/>
+            <circle class="checkmark" cx="250" cy="175" r="10"/>
+            <circle class="checkmark" cx="250" cy="225" r="10"/>
+            <!-- C++ -->
+            <circle class="checkmark" cx="350" cy="25" r="10"/>
+            <circle class="partial" cx="350" cy="75" r="10"/>
+            <circle class="missing" cx="350" cy="125" r="10"/>
+            <circle class="partial" cx="350" cy="175" r="10"/>
+            <circle class="partial" cx="350" cy="225" r="10"/>
+            <!-- Rust -->
+            <circle class="checkmark" cx="450" cy="25" r="10"/>
+            <circle class="checkmark" cx="450" cy="75" r="10"/>
+            <circle class="checkmark" cx="450" cy="125" r="10"/>
+            <circle class="checkmark" cx="450" cy="175" r="10"/>
+            <circle class="checkmark" cx="450" cy="225" r="10"/>
+            <!-- Go -->
+            <circle class="partial" cx="550" cy="25" r="10"/>
+            <circle class="checkmark" cx="550" cy="75" r="10"/>
+            <circle class="missing" cx="550" cy="125" r="10"/>
+            <circle class="missing" cx="550" cy="175" r="10"/>
+            <circle class="checkmark" cx="550" cy="225" r="10"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,62 @@
+// Simple Calculator in Swift++
+import std.io;
+import std.math;
+
+// Function to add two numbers
+fn add(a: float, b: float) -> float {
+    return a + b;
+}
+
+// Function to subtract two numbers
+fn subtract(a: float, b: float) -> float {
+    return a - b;
+}
+
+// Function to multiply two numbers
+fn multiply(a: float, b: float) -> float {
+    return a * b;
+}
+
+// Function to divide two numbers
+fn divide(a: float, b: float) -> Result<float, string> {
+    if b == 0.0 {
+        return Err("Cannot divide by zero!");
+    }
+    return Ok(a / b);
+}
+
+fn main() -> int {
+    println("Simple Calculator");
+    println("----------------");
+    
+    let num1 = 10.0;
+    let num2 = 5.0;
+    
+    // Addition
+    println("\nAddition:");
+    println("{} + {} = {}", num1, num2, add(num1, num2));
+    
+    // Subtraction
+    println("\nSubtraction:");
+    println("{} - {} = {}", num1, num2, subtract(num1, num2));
+    
+    // Multiplication
+    println("\nMultiplication:");
+    println("{} * {} = {}", num1, num2, multiply(num1, num2));
+    
+    // Division
+    println("\nDivision:");
+    match divide(num1, num2) {
+        Ok(result) => println("{} / {} = {}", num1, num2, result),
+        Err(msg) => println("Error: {}", msg)
+    }
+    
+    // Test division by zero
+    println("\nTesting division by zero:");
+    match divide(num1, 0.0) {
+        Ok(result) => println("{} / 0 = {}", num1, result),
+        Err(msg) => println("Error: {}", msg)
+    }
+    
+    return 0;
+}

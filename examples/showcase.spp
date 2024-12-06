@@ -1,0 +1,125 @@
+// Swift++ Language Showcase
+import std.io;
+import std.math;
+import std.collections;
+
+// Struct definition with methods
+struct Point {
+    x: float;
+    y: float;
+    
+    // Constructor
+    fn new(x: float, y: float) -> Point {
+        return Point { x, y };
+    }
+    
+    // Method to calculate distance from origin
+    fn distance_from_origin(&self) -> float {
+        return math::sqrt(self.x * self.x + self.y * self.y);
+    }
+}
+
+// Enum with associated values
+enum Shape {
+    Circle(radius: float),
+    Rectangle(width: float, height: float),
+    Triangle(base: float, height: float)
+}
+
+// Generic function
+fn print_array<T>(arr: &[T]) where T: Display {
+    print("[");
+    for (i, item) in arr.iter().enumerate() {
+        if i > 0 {
+            print(", ");
+        }
+        print(item);
+    }
+    println("]");
+}
+
+// Error handling using Result
+fn divide(a: float, b: float) -> Result<float, string> {
+    if b == 0.0 {
+        return Err("Division by zero!");
+    }
+    return Ok(a / b);
+}
+
+// Main function showcasing various features
+fn main() -> int {
+    // Variables and type inference
+    let name = "Swift++";
+    let version: float = 1.0;
+    println("Welcome to {name} version {version}!");
+    
+    // Arrays and vectors
+    let numbers = [1, 2, 3, 4, 5];
+    let mut vec = Vector::new();
+    vec.push(10);
+    vec.push(20);
+    vec.push(30);
+    
+    println("\nArray and Vector Demo:");
+    print_array(&numbers);
+    print_array(&vec);
+    
+    // Using our Point struct
+    let point = Point::new(3.0, 4.0);
+    println("\nPoint Demo:");
+    println("Point coordinates: ({}, {})", point.x, point.y);
+    println("Distance from origin: {}", point.distance_from_origin());
+    
+    // Pattern matching with enum
+    let shapes = [
+        Shape::Circle(5.0),
+        Shape::Rectangle(4.0, 6.0),
+        Shape::Triangle(3.0, 8.0)
+    ];
+    
+    println("\nShape Areas:");
+    for shape in shapes {
+        let area = match shape {
+            Shape::Circle(r) => math::PI * r * r,
+            Shape::Rectangle(w, h) => w * h,
+            Shape::Triangle(b, h) => 0.5 * b * h
+        };
+        println("Area: {area}");
+    }
+    
+    // Error handling demo
+    println("\nError Handling Demo:");
+    let numbers = [10.0, 5.0, 0.0];
+    for n in numbers {
+        match divide(100.0, n) {
+            Ok(result) => println("100 / {} = {}", n, result),
+            Err(msg) => println("Error: {msg}")
+        }
+    }
+    
+    // Memory safety features
+    let mut safe_vec = Vector::new();
+    safe_vec.push(1);
+    
+    // Automatic reference counting
+    {
+        let temp = safe_vec.clone();
+        println("\nCloned vector size: {}", temp.len());
+    } // temp is automatically freed here
+    
+    // Lambda functions
+    let square = |x: int| -> int { x * x };
+    println("\nLambda function demo:");
+    println("Square of 5 is: {}", square(5));
+    
+    // Async/await example
+    async fn fetch_data() -> string {
+        // Simulated async operation
+        await sleep(1000);
+        return "Data fetched!";
+    }
+    
+    println("\nAsync operation result: {}", await fetch_data());
+    
+    return 0;
+}

@@ -1,0 +1,83 @@
+// Sample Swift++ program demonstrating key language features
+
+// Module imports
+import std::io;
+import std::parallel;
+import std::simd;
+
+// Compile-time constant
+const MAX_ELEMENTS: usize = 1000000;
+
+// Custom type with ownership semantics
+struct DataBuffer {
+    data: own Vector<f64>,
+    
+    // Constructor
+    fn new(size: usize) -> Self {
+        Self {
+            data: Vector::with_capacity(size)
+        }
+    }
+    
+    // Move semantics
+    fn take(self) -> Vector<f64> {
+        move self.data
+    }
+}
+
+// Generic function with SIMD optimization
+fn parallel_sum<T: Number>(array: &[T]) -> T {
+    // Automatic SIMD vectorization
+    parallel {
+        let chunks = array.chunks(256);
+        chunks.map(|chunk| {
+            simd::sum(chunk)
+        }).sum()
+    }
+}
+
+// Async function example
+async fn process_data(buffer: &DataBuffer) -> Result<f64> {
+    // Pattern matching with error handling
+    match buffer.data.len() {
+        0 => Err("Empty buffer"),
+        n if n > MAX_ELEMENTS => Err("Buffer too large"),
+        _ => {
+            // Parallel processing with zero-copy
+            let result = parallel_sum(&buffer.data);
+            Ok(result)
+        }
+    }
+}
+
+// Main function
+fn main() {
+    // Type inference
+    let mut buffer = DataBuffer::new(1000);
+    
+    // Initialize with SIMD operations
+    parallel {
+        buffer.data.fill_simd(|i| i as f64 * 2.0);
+    }
+    
+    // Async/await execution
+    async {
+        match await process_data(&buffer) {
+            Ok(sum) => println("Sum: {}", sum),
+            Err(e) => eprintln("Error: {}", e)
+        }
+    }.run();
+    
+    // Automatic cleanup when buffer goes out of scope
+}
+
+// Zero-cost abstraction example
+#[inline(always)]
+fn optimize_me(x: i32) -> i32 {
+    // This will be completely optimized at compile-time
+    if x > 0 {
+        x * 2
+    } else {
+        -x * 2
+    }
+}
