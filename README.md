@@ -1,7 +1,7 @@
 # 🚀 Swift++ Programming Language
 
 <div align="center">
-  <img src="docs/logo.png" alt="Swift++ Logo" width="200"/>
+  <img src="docs/logo.svg" alt="Swift++ Logo" width="200"/>
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
