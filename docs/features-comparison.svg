@@ -1,53 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <!-- Gradients -->
+        <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#1a365d;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+        </linearGradient>
+        <!-- Icons -->
+        <symbol id="checkmark" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+        </symbol>
+        <symbol id="partial" viewBox="0 0 24 24">
+            <path d="M6 11h12v2H6z" />
+        </symbol>
+        <symbol id="cross" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+        </symbol>
+    </defs>
+    
     <style>
-        .feature { transition: transform 0.3s; }
-        .feature:hover { transform: scale(1.05); }
-        .checkmark { fill: #4CAF50; }
-        .partial { fill: #FFA726; }
-        .missing { fill: #E53935; }
+        @media (prefers-color-scheme: dark) {
+            .feature-name { fill: #e2e8f0 !important; }
+            .header-text { fill: #f8fafc !important; }
+            .column-header { fill: #e2e8f0 !important; }
+        }
+        .feature-row:hover { 
+            filter: brightness(1.1); 
+            transition: all 0.3s ease;
+        }
+        .feature-cell {
+            transition: all 0.3s ease;
+        }
+        .feature-cell:hover {
+            transform: scale(1.05);
+        }
+        text {
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .header {
+            font-weight: bold;
+        }
+        .header-text {
+            fill: #f8fafc;
+            font-weight: bold;
+        }
+        .feature-name {
+            fill: #334155;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .column-header {
+            fill: #334155;
+            font-weight: bold;
+        }
+        .icon-check {
+            fill: #22c55e;
+        }
+        .icon-partial {
+            fill: #eab308;
+        }
+        .icon-cross {
+            fill: #ef4444;
+        }
+        .legend-text {
+            fill: #334155;
+            font-size: 14px;
+        }
     </style>
-    <!-- Header -->
-    <text x="200" y="40" font-size="20" font-weight="bold">Language Feature Comparison</text>
-    <!-- Features -->
-    <g transform="translate(50, 80)">
-        <!-- Row headers -->
-        <text x="0" y="30">Zero-cost Abstractions</text>
-        <text x="0" y="80">Memory Safety</text>
-        <text x="0" y="130">Null Safety</text>
-        <text x="0" y="180">Pattern Matching</text>
-        <text x="0" y="230">Async/Await</text>
-        <!-- Column headers -->
-        <text x="250" y="0">Swift++</text>
-        <text x="350" y="0">C++</text>
-        <text x="450" y="0">Rust</text>
-        <text x="550" y="0">Go</text>
-        <!-- Checkmarks -->
-        <g class="feature">
-            <!-- Swift++ -->
-            <circle class="checkmark" cx="250" cy="25" r="10"/>
-            <circle class="checkmark" cx="250" cy="75" r="10"/>
-            <circle class="checkmark" cx="250" cy="125" r="10"/>
-            <circle class="checkmark" cx="250" cy="175" r="10"/>
-            <circle class="checkmark" cx="250" cy="225" r="10"/>
-            <!-- C++ -->
-            <circle class="checkmark" cx="350" cy="25" r="10"/>
-            <circle class="partial" cx="350" cy="75" r="10"/>
-            <circle class="missing" cx="350" cy="125" r="10"/>
-            <circle class="partial" cx="350" cy="175" r="10"/>
-            <circle class="partial" cx="350" cy="225" r="10"/>
-            <!-- Rust -->
-            <circle class="checkmark" cx="450" cy="25" r="10"/>
-            <circle class="checkmark" cx="450" cy="75" r="10"/>
-            <circle class="checkmark" cx="450" cy="125" r="10"/>
-            <circle class="checkmark" cx="450" cy="175" r="10"/>
-            <circle class="checkmark" cx="450" cy="225" r="10"/>
-            <!-- Go -->
-            <circle class="partial" cx="550" cy="25" r="10"/>
-            <circle class="checkmark" cx="550" cy="75" r="10"/>
-            <circle class="missing" cx="550" cy="125" r="10"/>
-            <circle class="missing" cx="550" cy="175" r="10"/>
-            <circle class="checkmark" cx="550" cy="225" r="10"/>
+
+    <!-- Header Background -->
+    <rect x="0" y="0" width="800" height="60" fill="url(#headerGrad)" />
+    
+    <!-- Header Text -->
+    <text x="250" y="38" class="header-text" font-size="24">Language Feature Comparison</text>
+
+    <!-- Column Headers -->
+    <g transform="translate(0, 80)">
+        <text x="200" y="0" class="column-header" font-size="18">Swift++</text>
+        <text x="350" y="0" class="column-header" font-size="18">C++</text>
+        <text x="500" y="0" class="column-header" font-size="18">Rust</text>
+        <text x="650" y="0" class="column-header" font-size="18">Go</text>
+    </g>
+
+    <!-- Feature Rows -->
+    <g transform="translate(20, 120)">
+        <!-- Feature Names -->
+        <g>
+            <text x="0" y="0" class="feature-name">Zero-cost Abstractions</text>
+            <text x="0" y="50" class="feature-name">Memory Safety</text>
+            <text x="0" y="100" class="feature-name">Null Safety</text>
+            <text x="0" y="150" class="feature-name">Pattern Matching</text>
+            <text x="0" y="200" class="feature-name">Async/Await</text>
+            <text x="0" y="250" class="feature-name">Compile Time Checks</text>
+            <text x="0" y="300" class="feature-name">LLVM Optimization</text>
         </g>
+
+        <!-- Swift++ -->
+        <g transform="translate(180, -20)" class="feature-row">
+            <use href="#checkmark" x="0" y="0" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="50" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="100" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="150" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="200" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="250" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="300" width="24" height="24" class="icon-check feature-cell" />
+        </g>
+
+        <!-- C++ -->
+        <g transform="translate(330, -20)" class="feature-row">
+            <use href="#checkmark" x="0" y="0" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#partial" x="0" y="50" width="24" height="24" class="icon-partial feature-cell" />
+            <use href="#cross" x="0" y="100" width="24" height="24" class="icon-cross feature-cell" />
+            <use href="#partial" x="0" y="150" width="24" height="24" class="icon-partial feature-cell" />
+            <use href="#partial" x="0" y="200" width="24" height="24" class="icon-partial feature-cell" />
+            <use href="#partial" x="0" y="250" width="24" height="24" class="icon-partial feature-cell" />
+            <use href="#checkmark" x="0" y="300" width="24" height="24" class="icon-check feature-cell" />
+        </g>
+
+        <!-- Rust -->
+        <g transform="translate(480, -20)" class="feature-row">
+            <use href="#checkmark" x="0" y="0" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="50" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="100" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="150" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="200" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="250" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#checkmark" x="0" y="300" width="24" height="24" class="icon-check feature-cell" />
+        </g>
+
+        <!-- Go -->
+        <g transform="translate(630, -20)" class="feature-row">
+            <use href="#partial" x="0" y="0" width="24" height="24" class="icon-partial feature-cell" />
+            <use href="#checkmark" x="0" y="50" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#cross" x="0" y="100" width="24" height="24" class="icon-cross feature-cell" />
+            <use href="#cross" x="0" y="150" width="24" height="24" class="icon-cross feature-cell" />
+            <use href="#checkmark" x="0" y="200" width="24" height="24" class="icon-check feature-cell" />
+            <use href="#partial" x="0" y="250" width="24" height="24" class="icon-partial feature-cell" />
+            <use href="#partial" x="0" y="300" width="24" height="24" class="icon-partial feature-cell" />
+        </g>
+    </g>
+
+    <!-- Legend -->
+    <g transform="translate(20, 450)">
+        <use href="#checkmark" x="0" y="0" width="24" height="24" class="icon-check" />
+        <text x="30" y="16" class="feature-name">Full Support</text>
+        
+        <use href="#partial" x="150" y="0" width="24" height="24" class="icon-partial" />
+        <text x="180" y="16" class="feature-name">Partial Support</text>
+        
+        <use href="#cross" x="300" y="0" width="24" height="24" class="icon-cross" />
+        <text x="330" y="16" class="feature-name">No Support</text>
     </g>
 </svg>

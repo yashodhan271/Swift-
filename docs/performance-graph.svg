@@ -1,31 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <!-- Bar Gradients -->
+        <linearGradient id="swiftppGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="cppGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="rustGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" style="stop-color:#ea580c;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f97316;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="goGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    
     <style>
-        .bar { transition: height 0.3s ease-in-out; }
-        .bar:hover { filter: brightness(1.1); }
+        @media (prefers-color-scheme: dark) {
+            .grid-line { stroke: #4b5563 !important; }
+            .axis-label { fill: #e5e7eb !important; }
+            .bar-label { fill: #f3f4f6 !important; }
+            .title { fill: #f3f4f6 !important; }
+        }
+        .bar { 
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .bar:hover { 
+            filter: brightness(1.1);
+            transform: translateY(-5px);
+        }
+        .grid-line {
+            stroke: #e5e7eb;
+            stroke-width: 1;
+        }
+        .axis-label {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            fill: #374151;
+            font-size: 12px;
+        }
+        .bar-label {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            fill: #1f2937;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .title {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            fill: #1f2937;
+            font-size: 20px;
+            font-weight: bold;
+        }
     </style>
+
+    <!-- Title -->
+    <text x="300" y="30" text-anchor="middle" class="title">Performance Comparison</text>
+
     <!-- Grid lines -->
-    <g stroke="#eee" stroke-width="1">
-        <line x1="50" y1="250" x2="550" y2="250"/>
-        <line x1="50" y1="200" x2="550" y2="200"/>
-        <line x1="50" y1="150" x2="550" y2="150"/>
-        <line x1="50" y1="100" x2="550" y2="100"/>
-        <line x1="50" y1="50" x2="550" y2="50"/>
+    <g>
+        <line x1="50" y1="250" x2="550" y2="250" class="grid-line"/>
+        <line x1="50" y1="200" x2="550" y2="200" class="grid-line"/>
+        <line x1="50" y1="150" x2="550" y2="150" class="grid-line"/>
+        <line x1="50" y1="100" x2="550" y2="100" class="grid-line"/>
+        <line x1="50" y1="50" x2="550" y2="50" class="grid-line"/>
     </g>
-    <!-- Bars -->
-    <rect class="bar" x="100" y="50" width="60" height="200" fill="#FF6B6B"/>
-    <rect class="bar" x="200" y="100" width="60" height="150" fill="#4ECDC4"/>
-    <rect class="bar" x="300" y="80" width="60" height="170" fill="#45B7D1"/>
-    <rect class="bar" x="400" y="120" width="60" height="130" fill="#96CEB4"/>
-    <!-- Labels -->
-    <text x="130" y="270" text-anchor="middle" fill="#666">Swift++</text>
-    <text x="230" y="270" text-anchor="middle" fill="#666">C++</text>
-    <text x="330" y="270" text-anchor="middle" fill="#666">Rust</text>
-    <text x="430" y="270" text-anchor="middle" fill="#666">Go</text>
+
     <!-- Y-axis labels -->
-    <text x="40" y="250" text-anchor="end" fill="#666">0</text>
-    <text x="40" y="200" text-anchor="end" fill="#666">25</text>
-    <text x="40" y="150" text-anchor="end" fill="#666">50</text>
-    <text x="40" y="100" text-anchor="end" fill="#666">75</text>
-    <text x="40" y="50" text-anchor="end" fill="#666">100</text>
+    <g>
+        <text x="40" y="255" text-anchor="end" class="axis-label">0</text>
+        <text x="40" y="205" text-anchor="end" class="axis-label">25</text>
+        <text x="40" y="155" text-anchor="end" class="axis-label">50</text>
+        <text x="40" y="105" text-anchor="end" class="axis-label">75</text>
+        <text x="40" y="55" text-anchor="end" class="axis-label">100</text>
+    </g>
+
+    <!-- Bars -->
+    <g>
+        <!-- Swift++ -->
+        <rect class="bar" x="100" y="50" width="60" height="200" fill="url(#swiftppGrad)" rx="6"/>
+        <text x="130" y="270" text-anchor="middle" class="bar-label">Swift++</text>
+        
+        <!-- C++ -->
+        <rect class="bar" x="200" y="100" width="60" height="150" fill="url(#cppGrad)" rx="6"/>
+        <text x="230" y="270" text-anchor="middle" class="bar-label">C++</text>
+        
+        <!-- Rust -->
+        <rect class="bar" x="300" y="80" width="60" height="170" fill="url(#rustGrad)" rx="6"/>
+        <text x="330" y="270" text-anchor="middle" class="bar-label">Rust</text>
+        
+        <!-- Go -->
+        <rect class="bar" x="400" y="120" width="60" height="130" fill="url(#goGrad)" rx="6"/>
+        <text x="430" y="270" text-anchor="middle" class="bar-label">Go</text>
+    </g>
+
+    <!-- Performance Values -->
+    <g>
+        <text x="130" y="45" text-anchor="middle" class="bar-label">100%</text>
+        <text x="230" y="95" text-anchor="middle" class="bar-label">75%</text>
+        <text x="330" y="75" text-anchor="middle" class="bar-label">85%</text>
+        <text x="430" y="115" text-anchor="middle" class="bar-label">65%</text>
+    </g>
 </svg>
